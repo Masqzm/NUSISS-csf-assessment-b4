@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, tap} from 'rxjs';
 import {ProductService} from '../product.service';
 import {Router} from '@angular/router';
 

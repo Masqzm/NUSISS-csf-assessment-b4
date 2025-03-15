@@ -16,9 +16,13 @@ export class AppComponent implements OnInit {
   itemCount!: number
 
   ngOnInit(): void {
+    this.itemCount = 0  // TO DO: get count from cart.store instead
   }
 
   checkout(): void {
-    this.router.navigate([ '/checkout' ])
+    if(this.itemCount == 0)
+      alert('No items in cart. Cannot checkout')
+    else
+      this.router.navigate([ '/checkout' ])
   }
 }

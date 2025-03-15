@@ -1,3 +1,13 @@
 TODO Task 1
 
 Write the command to import products.csv into Mongo in this file
+
+mongoimport --uri="mongodb://localhost:27017/csf-assessment" `
+--collection=products `
+--type=csv `
+--file=products.csv `
+--headerline `
+--drop
+
+
+Note: --headerline if using --type csv, uses first line as field names. Otherwise, mongoimport will import the first line as a distinct document.
