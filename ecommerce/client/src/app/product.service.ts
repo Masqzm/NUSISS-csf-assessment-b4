@@ -1,6 +1,6 @@
 import {Injectable, inject} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {Order, Product} from "./models";
 
 @Injectable()
@@ -26,7 +26,13 @@ export class ProductService {
   // IMPORTANT: DO NOT MODIFY THIS METHOD.
   // If this method is changed, any assessment task relying on this method will
   // not be marked
-  checkout(order: Order) {
-    // TODO Task 3
+  checkout(order: Order): Observable<any> {
+    // Task 3
+    console.info('order request: ', order)
+
+    // Note: http requests are never sent until observable has been subscribed to!
+    return this.http.post<any>('/api/order', order)
+    // 200 OK response:   {"orderId": "<new order id>"}
+    // 400 bad response:  {"message": "<error msg>"}
   }
 }

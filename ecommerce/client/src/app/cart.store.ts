@@ -28,6 +28,10 @@ export class CartStore extends ComponentStore<Cart> {
         super(INIT)
     }
 
+    resetStore() {
+        this.setState(INIT)
+    }
+
     // Mutators - update mtds
     // addLineItem(lineItem)
     readonly addLineItem = this.updater<LineItem>(      // updater<obj to be passed in to update>
@@ -48,5 +52,18 @@ export class CartStore extends ComponentStore<Cart> {
 
             return distinctCount
         }
+    )
+
+    readonly getCart$ = this.select<Cart>((slice: Cart) => slice)
+
+    // readonly getCartTotalPrice$ = this.select<number>(
+    //     (slice: Cart) => slice.lineItems.reduce((total, item) => total + item.price, 0) // 0 - init total (acc) value
+    // )
+    readonly getCartTotalPrice$ = this.select<number>(
+        (slice: Cart) => slice.lineItems.reduce((total, item) => {
+            total += item.price * item.quantity
+            console.info('updated total: ', total)
+            return total
+        }, 0) // 0 - init total (acc) value
     )
 }
