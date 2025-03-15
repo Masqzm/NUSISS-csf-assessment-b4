@@ -1,7 +1,7 @@
 -- Task 3
-DROP DATABASE IF EXISTS csf_assessment;
-CREATE DATABASE csf_assessment;
-USE csf_assessment;
+DROP DATABASE IF EXISTS ecommerce;
+CREATE DATABASE ecommerce;
+USE ecommerce;
 
 CREATE TABLE orders (
 	order_id char(26) NOT NULL,
